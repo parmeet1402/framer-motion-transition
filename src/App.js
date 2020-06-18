@@ -1,11 +1,24 @@
 import React from "react";
+import data from "./data.json";
+import CardList from "./CardList";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./styles.css";
 
 export default function App() {
   return (
     <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
+      <Router>
+        <Route
+          path={["/:id", "/"]}
+          render={props => (
+            <CardList
+              data={data.cardData}
+              {...props}
+              location={props.match}
+            />
+          )}
+        />
+      </Router>
     </div>
   );
 }
